@@ -1,5 +1,6 @@
 import React from 'react';
-import { Heart, Shield, Clock, Users, ArrowRight, CheckCircle, Star, Activity } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Users, Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -9,239 +10,245 @@ interface LandingPageProps {
 export default function LandingPage({ onGetStarted, darkMode }: LandingPageProps) {
   return (
     <div className={`min-h-screen ${
-      darkMode ? 'bg-gray-900' : 'bg-gray-50'
+      darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <p className={`text-sm font-medium tracking-wide uppercase ${
-                  darkMode ? 'text-blue-400' : 'text-blue-600'
-                }`}>
-                  MEDICAL CARE SIMPLIFIED
-                </p>
-                <h1 className={`text-5xl lg:text-6xl font-light leading-tight ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>
-                  Your health,
-                  <br />
-                  <span className="font-normal">simplified.</span>
-                </h1>
+        <div className="max-w-4xl mx-auto px-6 py-20 lg:py-32">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            {/* Logo */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center justify-center space-x-3 mb-12"
+            >
+              <div className="p-3 rounded-2xl bg-blue-500/10 backdrop-blur-sm">
+                <Activity className="w-8 h-8 text-blue-600" />
               </div>
-              
-              <p className={`text-xl leading-relaxed max-w-lg ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
+              <h1 className={`text-2xl font-light ${
+                darkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                Professional medication management designed for clarity, 
-                safety, and peace of mind.
-              </p>
-              
-              <button
-                onClick={onGetStarted}
-                className={`inline-flex items-center px-8 py-4 rounded-lg font-medium text-lg transition-all duration-200 ${
-                  darkMode 
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl' 
-                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl'
+                MedTracker
+              </h1>
+            </motion.div>
+
+            {/* Main Headline */}
+            <div className="space-y-6">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className={`text-5xl lg:text-7xl font-extralight leading-tight ${
+                  darkMode ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                <Activity className="w-5 h-5 mr-2" />
-                Start Managing
-              </button>
+                Never miss
+                <br />
+                <span className="font-light bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  a dose
+                </span>
+              </motion.h2>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className={`text-xl lg:text-2xl font-light max-w-2xl mx-auto leading-relaxed ${
+                  darkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}
+              >
+                Simple, intelligent medication management for you and your family
+              </motion.p>
             </div>
             
-            <div className="relative">
-              <div className={`relative rounded-2xl overflow-hidden ${
-                darkMode ? 'bg-gray-800 shadow-2xl' : 'bg-white shadow-2xl'
-              }`}>
-                <img 
-                  src="https://images.pexels.com/photos/3786126/pexels-photo-3786126.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Professional medication management"
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                
-                {/* Clean floating badges */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg text-sm font-medium text-gray-700 shadow-sm">
-                  Reliable
-                </div>
-                <div className="absolute left-4 top-1/2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg text-sm font-medium text-gray-700 shadow-sm">
-                  Safe
-                </div>
-                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg text-sm font-medium text-gray-700 shadow-sm">
-                  Simple
-                </div>
-              </div>
-            </div>
-          </div>
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="pt-8"
+            >
+              <button
+                onClick={onGetStarted}
+                className="group inline-flex items-center space-x-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
       {/* Features Section */}
       <div className={`py-20 ${
-        darkMode ? 'bg-gray-800' : 'bg-white'
+        darkMode ? 'bg-gray-800/50' : 'bg-gray-50/50'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className={`text-sm font-medium tracking-wide uppercase mb-4 ${
-              darkMode ? 'text-blue-400' : 'text-blue-600'
-            }`}>
-              TRUSTED MEDICAL MANAGEMENT
-            </p>
-            <h2 className={`text-4xl font-light ${
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h3 className={`text-3xl lg:text-4xl font-light mb-4 ${
               darkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Everything you need for medication safety
-            </h2>
-          </div>
+              Everything you need
+            </h3>
+            <p className={`text-lg font-light ${
+              darkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              Designed for simplicity, built for reliability
+            </p>
+          </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className={`p-8 rounded-2xl ${
-              darkMode ? 'bg-gray-700 shadow-xl' : 'bg-gray-50 shadow-lg'
-            }`}>
-              <div className={`w-12 h-12 rounded-xl ${
-                darkMode ? 'bg-blue-600' : 'bg-blue-100'
-              } flex items-center justify-center mb-6`}>
-                <Clock className={`w-6 h-6 ${
-                  darkMode ? 'text-white' : 'text-blue-600'
-                }`} />
-              </div>
-              <h3 className={`text-xl font-medium mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
-                Smart Scheduling
-              </h3>
-              <p className={`text-base leading-relaxed ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Intelligent reminders that adapt to your routine, ensuring you never miss a dose.
-              </p>
-            </div>
-            
-            <div className={`p-8 rounded-2xl ${
-              darkMode ? 'bg-gray-700 shadow-xl' : 'bg-gray-50 shadow-lg'
-            }`}>
-              <div className={`w-12 h-12 rounded-xl ${
-                darkMode ? 'bg-green-600' : 'bg-green-100'
-              } flex items-center justify-center mb-6`}>
-                <Shield className={`w-6 h-6 ${
-                  darkMode ? 'text-white' : 'text-green-600'
-                }`} />
-              </div>
-              <h3 className={`text-xl font-medium mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
-                Safety First
-              </h3>
-              <p className={`text-base leading-relaxed ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Priority-based alerts and comprehensive tracking for complete medication safety.
-              </p>
-            </div>
-            
-            <div className={`p-8 rounded-2xl ${
-              darkMode ? 'bg-gray-700 shadow-xl' : 'bg-gray-50 shadow-lg'
-            }`}>
-              <div className={`w-12 h-12 rounded-xl ${
-                darkMode ? 'bg-purple-600' : 'bg-purple-100'
-              } flex items-center justify-center mb-6`}>
-                <Users className={`w-6 h-6 ${
-                  darkMode ? 'text-white' : 'text-purple-600'
-                }`} />
-              </div>
-              <h3 className={`text-xl font-medium mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
-                Family Care
-              </h3>
-              <p className={`text-base leading-relaxed ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Manage medications for multiple family members with dedicated profiles.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              {
+                icon: Clock,
+                title: 'Smart Reminders',
+                description: 'Never miss a dose with intelligent notifications that adapt to your routine'
+              },
+              {
+                icon: Shield,
+                title: 'Safe & Secure',
+                description: 'Your health data is protected with enterprise-grade security and privacy'
+              },
+              {
+                icon: Users,
+                title: 'Family Care',
+                description: 'Manage medications for your entire family from one simple dashboard'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`text-center p-8 rounded-2xl ${
+                  darkMode ? 'bg-white/5' : 'bg-white/60'
+                } backdrop-blur-sm border ${
+                  darkMode ? 'border-white/10' : 'border-gray-200/20'
+                } hover:scale-105 transition-transform duration-300`}
+              >
+                <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center ${
+                  darkMode ? 'bg-blue-500/20' : 'bg-blue-100'
+                }`}>
+                  <feature.icon className={`w-8 h-8 ${
+                    darkMode ? 'text-blue-400' : 'text-blue-600'
+                  }`} />
+                </div>
+                <h4 className={`text-xl font-medium mb-4 ${
+                  darkMode ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {feature.title}
+                </h4>
+                <p className={`font-light leading-relaxed ${
+                  darkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Stats Section */}
       <div className={`py-20 ${
-        darkMode ? 'bg-gray-900' : 'bg-gray-50'
+        darkMode ? 'bg-gray-900' : 'bg-white'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12 text-center">
-            <div className="space-y-4">
-              <p className={`text-5xl font-light ${
-                darkMode ? 'text-blue-400' : 'text-blue-600'
-              }`}>
-                99%
-              </p>
-              <p className={`text-lg ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Medication adherence rate<br />with our system
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <p className={`text-5xl font-light ${
-                darkMode ? 'text-green-400' : 'text-green-600'
-              }`}>
-                24/7
-              </p>
-              <p className={`text-lg ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Continuous monitoring<br />and support
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <p className={`text-5xl font-light ${
-                darkMode ? 'text-purple-400' : 'text-purple-600'
-              }`}>
-                Safe
-              </p>
-              <p className={`text-lg ${
-                darkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                HIPAA compliant<br />data protection
-              </p>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-12 text-center"
+          >
+            {[
+              { number: '99%', label: 'Adherence Rate' },
+              { number: '24/7', label: 'Monitoring' },
+              { number: '100%', label: 'Secure' }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="space-y-2"
+              >
+                <p className={`text-5xl lg:text-6xl font-extralight ${
+                  darkMode ? 'text-blue-400' : 'text-blue-600'
+                }`}>
+                  {stat.number}
+                </p>
+                <p className={`text-lg font-light ${
+                  darkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* Final CTA */}
       <div className={`py-20 ${
-        darkMode ? 'bg-gray-800' : 'bg-white'
+        darkMode ? 'bg-gray-800/50' : 'bg-gray-50/50'
       }`}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className={`text-4xl font-light mb-6 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            Ready to simplify your medication management?
-          </h2>
-          <p className={`text-xl mb-8 ${
-            darkMode ? 'text-gray-300' : 'text-gray-600'
-          }`}>
-            Join thousands who trust us with their health
-          </p>
-          <button
-            onClick={onGetStarted}
-            className={`inline-flex items-center px-8 py-4 rounded-lg font-medium text-lg transition-all duration-200 ${
-              darkMode 
-                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl'
-            }`}
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-8"
           >
-            <Heart className="w-5 h-5 mr-2" />
-            Get Started Today
-          </button>
+            <h3 className={`text-4xl lg:text-5xl font-light ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              Ready to get started?
+            </h3>
+            <p className={`text-xl font-light ${
+              darkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
+              Join thousands who trust MedTracker with their health
+            </p>
+            <button
+              onClick={onGetStarted}
+              className="group inline-flex items-center space-x-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <span>Start Free Today</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </motion.div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className={`py-8 border-t ${
+        darkMode ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'
+      }`}>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className={`text-sm font-light ${
+            darkMode ? 'text-gray-400' : 'text-gray-500'
+          }`}>
+            © 2025 MedTracker. Designed for your health and peace of mind.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
