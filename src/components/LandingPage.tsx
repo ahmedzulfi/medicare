@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Shield, Clock, Users, Activity, Menu, X, Star, CheckCircle, Zap } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Users, Activity, Menu, X, Star, CheckCircle, Zap, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LandingPageProps {
@@ -14,8 +14,26 @@ export default function LandingPage({ onGetStarted, darkMode }: LandingPageProps
     <div className={`min-h-screen ${
       darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
+      {/* Made with Bolt Badge */}
+      <div className="fixed top-4 right-4 z-50">
+        <a
+          href="https://bolt.new"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center space-x-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 ${
+            darkMode 
+              ? 'bg-white/10 hover:bg-white/20 text-white border border-white/20' 
+              : 'bg-gray-900/10 hover:bg-gray-900/20 text-gray-900 border border-gray-900/20'
+          } backdrop-blur-md shadow-lg`}
+        >
+          <span className="text-xs">⚡</span>
+          <span>Made with Bolt</span>
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+
       {/* Header Navigation */}
-      <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md ${
+      <header className={`fixed top-0 left-0 right-0 z-40 backdrop-blur-md ${
         darkMode ? 'bg-gray-900/80 border-gray-800' : 'bg-white/80 border-gray-200'
       } border-b`}>
         <div className="max-w-7xl mx-auto px-6">
